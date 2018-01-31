@@ -81,7 +81,7 @@ class AccountInvoice(models.Model):
     @api.one
     @api.depends('amount_total')
     def _amount_in_words(self):
-        self.amount_to_text = amount_to_text_fr(self.amount_total, self.env.user.company_id.currency_id.symbol)#self.currency_id.symbol
+        self.amount_to_text = amount_to_text_fr(self.amount_total_ttc, self.env.user.company_id.currency_id.symbol)#self.currency_id.symbol
 
     amount_to_text = fields.Text(string='In Words',
         store=True, readonly=True, compute='_amount_in_words')
@@ -92,7 +92,7 @@ class SaleOrder(models.Model):
     @api.one
     @api.depends('amount_total')
     def _amount_in_words(self):
-        self.amount_to_text = amount_to_text_fr(self.amount_total, self.env.user.company_id.currency_id.symbol)#self.pricelist_id.currency_id.symbol
+        self.amount_to_text = amount_to_text_fr(self.amount_total_ttc, self.env.user.company_id.currency_id.symbol)#self.pricelist_id.currency_id.symbol
     
     
     amount_to_text = fields.Text(string='In Words',

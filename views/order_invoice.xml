@@ -8,43 +8,30 @@
             <field name="type">qweb</field>
             <field name="arch" type="xml">
                 <data>
-                    <xpath expr="//p[@t-if='o.comment']" position="before">
-                        <p>
-                            <strong>ARRETEE LA PRESENTE FACTURE A LA SOMME DE:</strong>
-                            <span t-field="o.amount_to_text"/>
-                        </p>
-                    </xpath>
+                    <!--
+                    <xpath expr="//table//tr//td//span//field[@name='amount_total']" position="after">
+                     <xpath expr="//div[@name='total']" position="replace">
 
-                </data>
-            </field>
-        </record>
+                    -->
+                        <xpath expr="//table[contains(@class, 'table-condensed')]/tr[2]/td[2]" position="after">
 
-        <record id="report_invoice_amount_ttc" model="ir.ui.view">
-            <field name="name">account.report_invoice_document_amount_ttc</field>
-            <field name="inherit_id" ref="account.report_invoice_document"/>
-            <field eval="10" name="priority"/>
-            <field name="type">qweb</field>
-            <field name="arch" type="xml">
-                <data>
-                    <xpath expr="//div[@class='col-xs-4 pull-right']" position="before">
-                        <div class="col-xs-5">
-                            <address t-field="o.amount_total_ttc"/>
-                        </div>
+
+
                         <div class="row">
                             <div class="col-xs-4 pull-right">
                                 <table class="table table-condensed">
                                     <tr class="border-black">
                                         <td>
-                                            <strong>Taxes Supp</strong>
+                                            <strong>Taxes Supp (%) </strong>
                                         </td>
                                         <td class="text-right">
                                             <span t-field="o.taxes_supp"/>
                                         </td>
                                     </tr>
-                                    <br/>
+
                                     <tr class="border-black">
                                         <td>
-                                            <strong>Total</strong>
+                                            <strong>Total TTC</strong>
                                         </td>
                                         <td class="text-right">
                                             <span t-field="o.amount_total_ttc"
@@ -54,12 +41,21 @@
                                 </table>
                             </div>
                         </div>
-                        <br/>
+
                     </xpath>
+                    <xpath expr="//p[@t-if='o.comment']" position="before">
+
+                         <p>
+                            <strong>ARRETEE LA PRESENTE FACTURE A LA SOMME DE:</strong>
+                            <span t-field="o.amount_to_text"/>
+                        </p>
+                    </xpath>
+
 
                 </data>
             </field>
         </record>
+
 
         <record id="report_saleorder_amount_to_text_fr" model="ir.ui.view">
             <field name="name">sale.report_saleorder_document_amount_to_text_fr</field>

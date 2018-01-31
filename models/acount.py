@@ -16,7 +16,7 @@ class AccountInvoice(models.Model):
         taxes = self.taxes_supp / 100
         self.amount_total_ttc = float(self.amount_total) * (1 + taxes)
 
-    taxes_supp = fields.Float( string='Taxes Supp (%)',degits=(16,2),default=0.00, related='partner_id.amount_tax_supp',readony='1',store=True )
+    taxes_supp = fields.Float( string='Taxes Supp (%)',degits=(16,2),default=0.00, related='partner_id.amount_tax_supp',readony=True,store=True )
 
     amount_total_ttc = fields.Monetary(string='Total TTC',store=True, readonly=True, compute='_compute_amount_with_ttc')
 
