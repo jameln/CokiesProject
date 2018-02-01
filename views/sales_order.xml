@@ -8,8 +8,9 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <field name="amount_total" position="after">
+
                <field name="taxes_supp"/>
-               <field name="amount_total_ttc"/>
+               <field name="amount_total_ttc" class="oe_subtotal_footer_separator" />
             </field>
         </field>
     </record>
